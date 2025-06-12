@@ -1,6 +1,7 @@
 //Bienvenida//
 let nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Como te llamas?")
-console.log("¡Bienvenida/o " + nombre + " a tu organizador de tareas!");
+const saludo = document.getElementById("saludoNombre");
+saludo.innerText = "Hola, " + nombre;
 
 let tareas = [];
 //Funcion para mostrar las tareas//
