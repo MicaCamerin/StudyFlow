@@ -1,5 +1,9 @@
 //Bienvenida//
 let nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Como te llamas?")
+while (nombre === null || nombre === "") {
+    alert("Por favor, ingresa tu nombre para comenzar");
+    nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Como te llamas?")
+}
 const saludo = document.getElementById("saludoNombre");
 saludo.innerText = "Hola, " + nombre;
 
@@ -15,14 +19,24 @@ const listaTareas = document.getElementById("listaTareas");
 const tareasVacio = document.getElementById("tareasVacio");
 
 //Funcion para mostrar las tareas y eliminarlas//
+function eliminarTarea(posicion) {
+  tareas.splice(posicion, 1); 
+  mostrarTareas(); 
+}
+
 function mostrarTareas() {
   listaTareas.innerHTML="";
+
   if (tareas.length === 0) {
     tareasVacio.style.display = "block";
   } else {
     tareasVacio.style.display = "none";
     tareas.forEach((tarea, index)=> {
-      listaTareas.innerHTML += `<li>${index + 1}. ${tarea}</li>`;
+      listaTareas.innerHTML += 
+      `<li>
+      ${index + 1}. ${tarea}
+      <button onclick="eliminarTarea(${index})">x</button>
+      </li>`;
     });
   }
 }
@@ -40,7 +54,7 @@ btnAgregar.addEventListener("click", (event) => {
       imputTare.value ="";
       mostrarTareas();
     } else {
-      alert("No se ingresaron tareas.");
+      alert("¡Feliciataciones, no tenes tareas pendiente!");
     }
 });
 
