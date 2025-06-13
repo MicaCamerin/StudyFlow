@@ -20,14 +20,19 @@ const btnAgregar = document.getElementById("botonAdd");
 //Array de tareas //
 let tareas = [];
 
+const tareasGuardadas = localStorage.getItem("tareas");
+if (tareasGuardadas) {
+  tareas = JSON.parse(tareasGuardadas);
+}
+
 const imputTare = document.getElementById("imputTareas");
-const botonAdd = document.getElementById("botonAdd");
 const listaTareas = document.getElementById("listaTareas");
 const tareasVacio = document.getElementById("tareasVacio");
 
 //Funcion para mostrar las tareas y eliminarlas//
 function eliminarTarea(posicion) {
   tareas.splice(posicion, 1); 
+  guardarTareas();
   mostrarTareas(); 
 }
 
@@ -48,6 +53,11 @@ function mostrarTareas() {
   }
 }
 
+//Funcion para guardar tareas en el local storage//
+function guardarTareas() {
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+}
+
 //Evento click y prevenir recargar de la pagina//
 btnAgregar.addEventListener("click", (event) => { 
  event.preventDefault();
@@ -58,12 +68,14 @@ btnAgregar.addEventListener("click", (event) => {
     if (nuevaTarea !== "") {
       tareas.push(nuevaTarea);
       imputTare.value ="";
+      guardarTareas();
       mostrarTareas();
     } else {
       alert("Por favor, agrega una tarea a la lista");
     }
 });
 
+mostrarTareas();
 
 
 
