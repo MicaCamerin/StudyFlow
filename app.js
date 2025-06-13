@@ -1,9 +1,16 @@
-//Bienvenida//
-let nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Como te llamas?")
-while (nombre === null || nombre === "") {
+//Revision si hay nombres guardados en el local storage//
+let nombre = localStorage.getItem("nombreUsuario");
+
+if (!nombre) {
+  nombre = prompt("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Cómo te llamas?");
+  while (nombre === null || nombre.trim() === "") {
     alert("Por favor, ingresa tu nombre para comenzar");
-    nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Como te llamas?")
+    nombre = prompt("¿Cómo te llamás?");
+  }
+  localStorage.setItem("nombreUsuario", nombre);
 }
+
+// Bienvenida//
 const saludo = document.getElementById("saludoNombre");
 saludo.innerText = "Hola, " + nombre;
 
