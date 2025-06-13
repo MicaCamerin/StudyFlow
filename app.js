@@ -3,18 +3,35 @@ let nombre = prompt ("¡Hola, vamos a organizar tus tareas! Primero lo primero, 
 const saludo = document.getElementById("saludoNombre");
 saludo.innerText = "Hola, " + nombre;
 
+//Formulario - boton +//
+const btnAgregar = document.getElementById("botonAdd");
+
+//Evento click y prevenir recargar de la pagina//
+btnAgregar.addEventListener("click", (event) => {
+ event.preventDefault();
+});
+
+//Array de tareas //
 let tareas = [];
+
+const imputTare = document.getElementById("imputTareas");
+const botonAdd = document.getElementById("botonAdd");
+const listaTareas = document.getElementById("listaTareas");
+const tareasVacio = document.getElementById("tareasVacio");
+
 //Funcion para mostrar las tareas//
 function mostrarTareas() {
+  listaTareas.innerHTML="";
   if (tareas.length === 0) {
-    console.log("No hay tareas pendientes");
+    tareasVacio.style.display = "block";
   } else {
-    console.log("Lista de tareas:");
-    for (let i = 0; i < tareas.length; i++) {
-      console.log((i + 1) + ". " + tareas[i]);
-    }
+    tareasVacio.style.display = "none";
+    tareas.forEach((tareas, index)=> {
+      listaTareas.innerHTML += `<li>${index + 1}. ${tarea}</li>`;
+    });
   }
 }
+
 //Funcon para agregar tareas//
 function agregarTarea() {
     let nuevaTarea = prompt("Agregar tarea");
@@ -52,36 +69,8 @@ function eliminarTarea() {
     }
   }
 
-//Funcion de menù de opciones//
-function mostrarMenu() {
-    let opcion = "";
-  
-    for (let i = 0; i < 100; i++) { //no se me ocurrio una forma de que corra infinitas veces, asi que le puse un numero alto//
-        let opcion = prompt(
-          "¿Qué querés hacer? " + nombre +
-          " 1. Ver tareas " + 
-          "2. Agregar tareas " + 
-          "3. Eliminar una tarea " + 
-          "4. Salir"
-        );
-  
-      if (opcion === "1") {
-        if (tareas.length === 0) {
-        alert("No se han agregado tareas aún");
-        } else {mostrarTareas();}
-      }else if (opcion === "2") {
-        agregarTarea();
-      } else if (opcion === "3") {
-        eliminarTarea();
-      } else if (opcion === "4") {
-        console.log("¡Nos vemos!");
-        break;
-      } else {
-        alert("Opción inválida. Elegí un número del 1 al 4.");
-      }
-    }
-  }
-mostrarMenu();
+
+
 
 
 
