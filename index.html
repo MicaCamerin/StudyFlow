@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyFlow - App de Tareas</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
 
-<div class="saludo">
+    <!-- VICULACION CSS -->
+    <link rel="stylesheet" href="./CSS/style.css">
+    <!-- tipografìa -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>StudyFlow - App de Tareas</title>
+</head>
+
+<body>
+<div class="mainContainer">
+<section class="containerPadre">
+
+    <div class="saludo">
     <h1 id="saludoNombre">Hola</h1>
-    <h2>¡Comencemos con el desafio!</h2>
+    <h2>¡Comencemos con el desafio!💡</h2>
 </div>
 
 <div class="containerTareas">
- <h2>Mis Tareas</h2>
- <div class="conteinarFormulario">
-    <form>
-      <input type="text" id="imputTareas" placeholder="Agregar tarea...">
+ <h2 class="tituloTareas">Mis Tareas</h2>
+ <div>
+    <form class="formTares">
+      <input type="text" class="imputTask" id="imputTareas" placeholder="Agregar tarea...">
       <button class="btnAdd" id="botonAdd">+</button>
     </form>
  </div>
@@ -27,9 +36,14 @@
     </ul>
  </div>
 
- <div class="noTareas" >
-    <p id="tareasVacio" >Felicitaciones, no tienes tareas pendientes!</p>
+ <div>
+    <p id="tareasVacio" class="noTareas">Felicitaciones, no tienes tareas pendientes!</p>
  </div>
+</div>
+</section>
+<section class="imageContainer">
+        <img src="./IMAGENES/lightBlue.jpg" alt="Imagen inspiradora con colores suaves y diseño lofi" />
+</section>
 </div>
 
     <!-- VICULACION JS -->

@@ -40,9 +40,9 @@ function mostrarTareas() {
     tareasVacio.style.display = "none";
     tareas.forEach((tarea, index)=> {
       listaTareas.innerHTML += 
-      `<li>
+      `<li class="tareaItem">
       ${index + 1}. ${tarea}
-      <button onclick="eliminarTarea(${index})">x</button>
+      <button class="btnBorrar" onclick="eliminarTarea(${index})">x</button>
       </li>`;
     });
   }
@@ -53,7 +53,6 @@ btnAgregar.addEventListener("click", (event) => {
  event.preventDefault();
 
 //Funcon para agregar tareas//
-
     let nuevaTarea = imputTare.value;
   
     if (nuevaTarea !== "") {
@@ -61,7 +60,7 @@ btnAgregar.addEventListener("click", (event) => {
       imputTare.value ="";
       mostrarTareas();
     } else {
-      alert("¡Feliciataciones, no tenes tareas pendiente!");
+      alert("Por favor, agrega una tarea a la lista");
     }
 });
 
