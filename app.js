@@ -14,7 +14,7 @@ if (!nombre) {
 const saludo = document.getElementById("saludoNombre");
 saludo.innerText = "Hola, " + nombre;
 
-//Formulario - boton +//
+//Boton +//
 const btnAgregar = document.getElementById("botonAdd");
 
 //Array de tareas //
@@ -62,7 +62,7 @@ function guardarTareas() {
 btnAgregar.addEventListener("click", (event) => { 
  event.preventDefault();
 
-//Funcon para agregar tareas//
+//Funcion para agregar tareas//
     let nuevaTarea = imputTare.value;
   
     if (nuevaTarea !== "") {
@@ -76,6 +76,24 @@ btnAgregar.addEventListener("click", (event) => {
 });
 
 mostrarTareas();
+
+//Botones cambia mood//
+const containerPadre = document.querySelector(".containerPadre");
+const imagenFondo = document.getElementById("imagenFondo");
+const btnLightBlue = document.getElementById("lightBlue");
+const btnLightPink = document.getElementById("lightPink");
+
+btnLightBlue.addEventListener("click", () => {
+  containerPadre.classList.remove("moodPink");
+  containerPadre.classList.add("moodBlue");
+  imagenFondo.src = "./IMAGENES/lightBlue.jpg";
+});
+
+btnLightPink.addEventListener("click", () => {
+  containerPadre.classList.remove("moodBlue");
+  containerPadre.classList.add("moodPink");
+  imagenFondo.src = "./IMAGENES/lightPink.jpg";
+});
 
 
 

@@ -25,13 +25,13 @@
 <div class="containerTareas">
  <h2 class="tituloTareas">Mis Tareas</h2>
  <div>
-    <form class="formTares">
-      <input type="text" class="imputTask" id="imputTareas" placeholder="Agregar tarea...">
+    <form class="formTareas">
+      <input type="text" id="imputTareas" placeholder="Agregar tarea...">
       <button class="btnAdd" id="botonAdd">+</button>
     </form>
  </div>
 
- <div class="liContainer">
+ <div>
     <ul id="listaTareas">    
     </ul>
  </div>
@@ -40,11 +40,16 @@
     <p id="tareasVacio" class="noTareas">Felicitaciones, no tienes tareas pendientes!</p>
  </div>
 </div>
+ <div class="moodContainer">
+  <button class="btnMood lightBlue" id="lightBlue"></button>
+  <button class="btnMood lightPink" id="lightPink"></button>
+</div>
 </section>
 <section class="imageContainer">
-        <img src="./IMAGENES/lightBlue.jpg" alt="Imagen inspiradora con colores suaves y diseño lofi" />
+        <img id="imagenFondo" src="./IMAGENES/lightBlue.jpg" alt="Imagen inspiradora con colores suaves y diseño lofi" />
 </section>
 </div>
+
 
     <!-- VICULACION JS -->
     <script src="./app.js"></script>

@@ -40,7 +40,7 @@ body {
 }
 
 /*Form de tareas*/
-.formTares{
+.formTareas{
 display: flex;
 align-items: left;
 padding-left: 20px;
@@ -143,3 +143,54 @@ padding-left: 20px;
     object-fit: cover;
     display: block;
 }
+
+/*Botones Mood*/
+.moodContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 7%;
+  padding-top: 40px;
+}
+
+.btnMood {
+  width: 50px;
+  height: 30px;
+  border-radius: 20%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.lightBlue {
+  background: linear-gradient(135deg, #6ea8fe, #a8c7ff);
+}
+
+.lightPink{
+  background: linear-gradient(135deg, #e574bc, #f7b4e9);
+}
+
+/*Fondos de las secciones*/
+.containerPadre.moodBlue {
+  background-color: #c9d3f0;
+}
+
+.containerPadre.moodPink {
+  background-color: #facdf1;
+}
+
+/*Estilos hover de los botones +*/
+.containerPadre.moodBlue .btnAdd:hover{
+      background-color: #8a96ba; 
+    color: white;
+    border: 1px solid white; 
+}
+
+.containerPadre.moodPink .btnAdd:hover{
+      background-color: #e574bc; 
+    color: white;
+    border: 1px solid white; 
+}
+
+
+
