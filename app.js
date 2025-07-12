@@ -2,17 +2,33 @@
 let nombre = localStorage.getItem("nombreUsuario");
 
 if (!nombre) {
-  nombre = prompt("¡Hola, vamos a organizar tus tareas! Primero lo primero, ¿Cómo te llamas?");
-  while (nombre === null || nombre.trim() === "") {
-    alert("Por favor, ingresa tu nombre para comenzar");
-    nombre = prompt("¿Cómo te llamás?");
-  }
-  localStorage.setItem("nombreUsuario", nombre);
-}
+ Swal.fire({
+    title: "¡Hola, Bienvenid@ a Study Flow!",
+    text: "Vamos a organizar tus tareas💡 ¿Cómo te llamás?",
+    input: "text",
+    inputPlaceholder: "Escribí tu nombre...",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    confirmButtonText: "Comenzar",
+    confirmButtonColor: '#8a96ba',
+    inputValidator: (value) => {
+      if (!value || value.trim() === "") {
+        return "Por favor, ingresá un nombre válido.";
+      }
+    }
+  }).then((result) => {
+    nombre = result.value.trim();
+    localStorage.setItem("nombreUsuario", nombre);
 
-// Bienvenida//
-const saludo = document.getElementById("saludoNombre");
-saludo.innerText = "Hola, " + nombre;
+    // Bienvenida//
+    const saludo = document.getElementById("saludoNombre");
+    saludo.innerText = "Hola, " + nombre;
+  });
+} else {
+  //Bienvenida si ya estaba guardado el nombre//
+  const saludo = document.getElementById("saludoNombre");
+  saludo.innerText = "Hola, " + nombre;
+}
 
 //Boton +//
 const btnAgregar = document.getElementById("botonAdd");
@@ -70,9 +86,14 @@ btnAgregar.addEventListener("click", (event) => {
       imputTare.value ="";
       guardarTareas();
       mostrarTareas();
-    } else {
-      alert("Por favor, agrega una tarea a la lista");
-    }
+    }  else {
+    Swal.fire({
+      icon: 'warning',
+      title: '¡Ups, parece que hubo un error!',
+      text: 'Por favor, agrega una tarea a la lista',
+      confirmButtonColor: '#8a96ba'
+    });
+  }
 });
 
 mostrarTareas();
@@ -96,6 +117,75 @@ btnLightPink.addEventListener("click", () => {
 });
 
 
+//Timer//
+let tiempo = 1500;
+let tiempoInicial = 1500;
+let intervalo = null;
 
+const display = document.getElementById("timerDisplay");
+const btnIni = document.getElementById("btnIniciar");
+const btnPaus = document.getElementById("btnPausar");
+const btnReset = document.getElementById("btnResetear");
 
+// Fetch del archivo JSON para cargar la duración//
+fetch("timer.json")
+  .then(response => response.json())
+  .then(data => {
+    tiempo = data.duracion;
+    tiempoInicial = data.duracion;
+    renderizarTiempo(); 
+  })
+   .catch(error => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al cargar el timer',
+      text: 'Vuelve a intentarlo mas tarde.',
+      confirmButtonColor: '#8a96ba'
+    });
+  });
 
+// Mostrar Timer//
+function renderizarTiempo() {
+  const minutos = Math.floor(tiempo / 60);
+  const segundos = tiempo % 60;
+  display.innerText = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+}
+
+// Iniciar timer //
+function iniciarTimer() {
+  if (intervalo === null && tiempo > 0) {
+    intervalo = setInterval(() => {
+      tiempo--;
+      renderizarTiempo();
+
+      if (tiempo === 0) {
+        clearInterval(intervalo);
+        intervalo = null;
+        Swal.fire({
+          icon: 'success',
+          title: '¡El tiempo ha terminado!',
+          text: '¡Buen trabajo, sigue así!',
+          confirmButtonColor: '#8a96ba'
+        });
+      }
+    }, 1000);
+  }
+}
+
+// Pausar timer//
+function pausarTimer() {
+  clearInterval(intervalo);
+  intervalo = null;
+}
+
+// Resetear timer//
+function resetearTimer() {
+  pausarTimer();
+  tiempo = tiempoInicial;
+  renderizarTiempo();
+}
+
+// Eventos//
+btnIni.addEventListener("click", iniciarTimer);
+btnPaus.addEventListener("click", pausarTimer);
+btnReset.addEventListener("click", resetearTimer);
